@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         paddingTop: 80,
     },
     image: {
-        width: 220,
-        height: 220,
+        width: 270,
+        height: 270,
     },
     name: {
         fontSize: 47,
@@ -96,11 +96,11 @@ const styles = StyleSheet.create({
     listTitle: {
         fontWeight: 'bold',
         fontSize: 30,
-        color: '#fff',
+        color: '#CCD3CA',
         marginBottom: 5,
     },
     listItem: {
         fontSize: 18,
-        color: '#fff',
+        color: '#CCD3CA',
     }
 });
