@@ -27,17 +27,38 @@ app.use(pupProfileRoutes);
 //APIS
 app.post("/create-profile", async (req, res) => {
     try {
-        const icon = await createPupIcon();
-        console.log(icon)
+        // const data = {
+        //     DogName: 'Helen',
+        //     DogBirthday: 'April',
+        //     DogSex: 'Female',
+        //     DogColor: 'Brown',
+        //     DogBreed: 'Labrador',
+        //     DogFeatures: 'Spotted',
+        //     DogFur: 'Short',
+        //     DogEyeColor: 'Hazel',
+        //     DogSnoutColor: 'Black',
+        //     DogEarColor: 'Brown'
+        // }
+        const data = req.body.formData
+        const color = data.DogColor
+        const breed = data.DogBreed
+        const features = data.DogFeatures
+        const fur = data.DogFur
+        const eye = data.DogEyeColor
+        const snout = data.DogSnoutColor
+        const ear = data.DogEarColor
+
+        const icon = await createPupIcon(breed, color, fur, eye, snout, ear, features);
+        // console.log(icon)
         const removebgImage = await removeBackground(icon);
-        console.log(removebgImage)
+        // console.log(removebgImage)
         const binaryData = Buffer.from(removebgImage, 'base64');
-        console.log(binaryData)
+        // console.log(binaryData)
         const newProfileData = {
-            dogName: "Paul",
-            breed: "German Shepherd",
-            birthday: "August 10",
-            gender: "male",
+            dogName: data.DogName,
+            breed: breed,
+            birthday: data.DogBirthday,
+            gender: data.DogSex,
             icon: binaryData
         }
 
@@ -53,15 +74,14 @@ app.post("/create-profile", async (req, res) => {
 });
 
 
-async function createPupIcon() {
+async function createPupIcon(breed, color, fur, eye, snout, ear, features) {
     try {
-    //   const user_message = `Given the top music genres a user listens to ${genreArray}, and a list of some of their most listened to and liked musical artists ${artistArray}, can you write a short, friendly, 1 paragraph, introduction description about this user's music interests from a first person perspective for others to read and relate to. You do not need to say the user's name.`;
       const response = await openai.images.generate({
         model: "dall-e-3",
-        prompt: "Make a simple flat icon of a dog's head. The dog is a bernadoodle breed, but make it look like the following description: The dog is mostly white. The dog has fluffy white hair. The dogs eyes are brown. The dog has a black nose. The dog’s snout is white. The dog's ears are black. please include it's black hair around it's eyes. The dog has a mostly white face, with black hair on it's ears and around it's eyes.",
+        prompt: `Make a simple flat icon of a dog's head. The dog is a ${breed} breed, but make it look like the following description: The dog is ${color}. The dog has ${fur} hair. The dogs eyes are ${eye}. The dog has a ${snout} snout. The dog's ears are ${ear}. Please include it's ${features}.`,
         // response_format: "b64_json"
       });
-    //   console.log(response.data[0].b64_json);
+      console.log(response.data[0].url);
       return response.data[0].url;
     } catch (err) {
       console.log("Failed to create a description.");
