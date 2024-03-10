@@ -1,39 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 
-import * as Location from 'expo-location';
+import MapLocation from './components/MapLocation';
+import Profile from './components/profile';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
 
   return (
-    <View style={styles.container}>
-      <Text>{text}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="MapLocation">
+        <Stack.Screen name="MapLocation" component={MapLocation} options={{ headerShown: false }}/>
+        <Stack.Screen name="Profile" component={Profile} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
