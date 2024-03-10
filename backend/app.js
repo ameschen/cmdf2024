@@ -29,19 +29,8 @@ app.use(pupProfileRoutes);
 app.post("/create-profile", async (req, res) => {
   console.log('backend')
   try {
-    // const data = {
-    //     DogName: 'Helen',
-    //     DogBirthday: 'April',
-    //     DogSex: 'Female',
-    //     DogColor: 'Brown',
-    //     DogBreed: 'Labrador',
-    //     DogFeatures: 'Spotted',
-    //     DogFur: 'Short',
-    //     DogEyeColor: 'Hazel',
-    //     DogSnoutColor: 'Black',
-    //     DogEarColor: 'Brown'
-    // }
     const data = req.body.formData
+
     const color = data.DogColor
     const breed = data.DogBreed
     const features = data.DogFeatures
@@ -60,7 +49,9 @@ app.post("/create-profile", async (req, res) => {
       dogName: data.DogName,
       breed: breed,
       birthday: data.DogBirthday,
-      gender: data.DogSex,
+      gender: data.DogGender,
+      likes: data.DogLikes,
+      dislikes: data.DogDislikes,
       icon: binaryData
     }
 

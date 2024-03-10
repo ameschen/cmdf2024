@@ -140,7 +140,7 @@ const MapLocation = (props) => {
           coordinate={coords}
           onPress={() => props.navigation.navigate('Profile')}
         >
-          <Image source={{ uri: pngImageUri }} style={{ width: 90, height: 90 }} />
+          <Image source={{ uri: pngImageUri }} style={{ width: 100, height: 100 }} />
         </Marker>
       </MapView>
       <StatusBar style="auto" />

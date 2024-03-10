@@ -28,15 +28,12 @@ const pupProfileSchema = new mongoose.Schema({
   dislikes: {
     type: String
   },
-  coordinates: {
-    type: String
-  },
-  nearby: [{
-    type: Number
-  }],
-  friends: [{
-    type: Number
-  }],
+  // nearby: [{
+  //   type: Number
+  // }],
+  // friends: [{
+  //   type: Number
+  // }],
   icon: {
     type: Buffer
   },
@@ -85,9 +82,9 @@ pupProfileRoutes.route("/pup-profile/add").post(async function (req, res) {
         gender: req.body.gender,
         likes: req.body.likes,
         dislikes: req.body.dislikes,
-        coordinates: req.body.coordinates,
-        nearby: req.body.nearby,
-        friends: req.body.friends,
+        // coordinates: req.body.coordinates,
+        // nearby: req.body.nearby,
+        // friends: req.body.friends,
         icon: req.body.icon,
     });
     res.json(newRecord);
@@ -110,9 +107,9 @@ pupProfileRoutes.route("/pup-profile/update/:id").post(async function (req, res)
           gender: req.body.gender,
           likes: req.body.likes,
           dislikes: req.body.dislikes,
-          coordinates: req.body.coordinates,
-          nearby: req.body.nearby,
-          friends: req.body.friends,
+          // coordinates: req.body.coordinates,
+          // nearby: req.body.nearby,
+          // friends: req.body.friends,
           icon: req.body.icon,
         },
       },

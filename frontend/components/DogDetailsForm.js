@@ -15,11 +15,16 @@ const DogDetailsForm = (props) => {
   const [email, setEmail] = useState('');
   const [dogName, setDogName] = useState('');
   const [dogBirthday, setDogBirthday] = useState('');
-  const [dogSex, setDogSex] = useState('');
+  const [dogGender, setDogGender] = useState('');
+  const [dogLikes, setDogLikes] = useState('');
+  const [dogDislikes, setDogDislikes] = useState('');
+
+  // const [isLoading, setIsLoading] = useState(false);
   // const [submitForm, setSubmitForm] = useState(null);
 
-
   const handleSubmit = async () => {
+    alert('Loading...');
+
     const formData = {
       DogColor: dogColor,
       DogBreed: dogBreed,
@@ -28,31 +33,19 @@ const DogDetailsForm = (props) => {
       DogEyeColor: dogEyeColor,
       DogEarColor: dogEarColor,
       DogSnoutColor: dogSnoutColor,
-      Email: email,
+      // Email: email,
       DogName: dogName,
       DogBirthday: dogBirthday,
-      DogSex: dogSex
+      DogGender: dogGender,
+      DogLikes: dogLikes,
+      DogDislikes: dogDislikes
     };
 
     console.log(formData); // See what will be sent
 
-    // try {
-    //   console.log("calling api");
-    //   const response = await axios.post('http://localhost:3001/create-profile', formData, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     }
-    //   });
-    //   console.log("done calling api");
-    //   console.log(response.data); // Handle the response from the backend
-
-    // } catch (error) {
-    //   console.error(error); // Handle any errors here
-    //   alert('Failed to submit form');
-    // }
     try {
       console.log("in try");
-      fetch('http://128.189.87.120:3001/create-profile', {
+      fetch('http://206.12.40.175:3001/create-profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -77,25 +70,8 @@ const DogDetailsForm = (props) => {
     } catch (error) {
       console.error(error); // Handle any errors here
       alert('Failed to submit form');
-    }
-
+    } 
   };
-
-  // const GradientButton = ({ onPress, title }) => {
-  //   return (
-  //     <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-  //       <LinearGradient
-  //         // Button Linear Gradient
-  //         colors={['#FFA500', '#FF7F00']} // This is an orange gradient
-  //         start={{ x: 0, y: 0 }}
-  //         end={{ x: 1, y: 0 }}
-  //         style={styles.button}
-  //       >
-  //         <Text style={styles.buttonText}>{title}</Text>
-  //       </LinearGradient>
-  //     </TouchableOpacity>
-  //   );
-  // };
 
   return (
 
@@ -105,6 +81,11 @@ const DogDetailsForm = (props) => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}>
+      {/* {isLoading ? ( // Show loading indicator if isLoading is true
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Loading...</Text>
+          </View>
+        ) : ( */}
         <View style={styles.container}>
           <Image
             source={require('../logoNew.png')} // Replace with the path to your image
@@ -113,14 +94,14 @@ const DogDetailsForm = (props) => {
           />
 
           <Text style={styles.subheading}>Profile Creation</Text>
-          <Text style={styles.label}>What is your email?</Text>
+          {/* <Text style={styles.label}>What is your email?</Text>
           <TextInput
             style={styles.input}
             onChangeText={setEmail}
             value={email}
             keyboardType="email-address" // To show email input suggestions on the keyboard
             autoCapitalize="none" // To ensure email addresses are entered in lowercase
-          />
+          /> */}
 
           <Text style={styles.label}>What is your pup's name?</Text>
           <TextInput
@@ -138,13 +119,26 @@ const DogDetailsForm = (props) => {
             keyboardType="numeric" // To show numeric keyboard
           />
 
-          <Text style={styles.label}>What is your pup's sex?</Text>
+          <Text style={styles.label}>What is your pup's gender?</Text>
           <TextInput
             style={styles.input}
-            onChangeText={setDogSex}
-            value={dogSex}
-            autoCapitalize="none" // To prevent automatic capitalization
+            onChangeText={setDogGender}
+            value={dogGender}
           />
+
+          <Text style={styles.label}>What are your pup's likes?</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setDogLikes}
+            value={dogLikes}
+          />
+
+          <Text style={styles.label}>What are your pup's dislikes?</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setDogDislikes}
+            value={dogDislikes}
+          />    
 
           <Text style={styles.subheading}>Pup Creation</Text>
 
@@ -208,6 +202,7 @@ const DogDetailsForm = (props) => {
 
           </View>
         </View>
+        
       </ScrollView>
     </KeyboardAvoidingView>
   );
