@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Friends from "./Friends";
 import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 
 const mockDogs = [
