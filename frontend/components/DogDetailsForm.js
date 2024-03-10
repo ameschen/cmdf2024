@@ -52,27 +52,24 @@ const DogDetailsForm = (props) => {
     // }
     try {
       console.log("in try");
-      fetch('http://206.12.40.175:3001/create-profile', {
+      fetch('http://128.189.87.120:3001/create-profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ formData })
       })
-        .then(data => {
-          data.json();
-          console.log("in in first then");
-          props.navigation.navigate('MapLocation');
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
         })
-        // .then(data => {
-        //   if (data.error) {
-        //     alert(data.error);
-        //     alert('Failed to submit form');
-        //   } else {
-        //     console.log(data);
-        //     props.navigation.navigate('MapLocation');
-        //   }
-        // })
+        .then(data => {
+          console.log("in in first then");
+          // console.log(data.base64Image);
+          props.navigation.navigate('MapLocation', { base64ImageData: data.base64Image });
+        })
         .catch(error => {
           alert(error);
           alert('catch error');

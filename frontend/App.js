@@ -19,7 +19,7 @@ export default function App() {
     // <Test></Test>
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="MapLocation">
+      <Stack.Navigator initialRouteName="DogDetailsForm">
         <Stack.Screen name="DogDetailsForm" component={DogDetailsForm} options={{ headerShown: false }} />
         <Stack.Screen name="MapLocation" component={MapLocation} options={{ headerShown: false }} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />

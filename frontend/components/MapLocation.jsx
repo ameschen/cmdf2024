@@ -6,6 +6,8 @@ import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import HamburgerIcon from './HamburgerIcon';
 import mockDogs from './Data';
+import { Image } from 'react-native';
+import * as FileSystem from 'expo-file-system';
 
 const MapLocation = (props) => {
 
@@ -19,6 +21,10 @@ const MapLocation = (props) => {
     longitude: -123.24472,
   });
 
+  const { base64ImageData } = props.route.params;
+  const [pngImageUri, setPngImageUri] = useState(null);
+
+
   useEffect(() => {
     (async () => {
 
@@ -30,12 +36,28 @@ const MapLocation = (props) => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      const pngUri = await saveBase64ToPNG(base64ImageData);
+      setPngImageUri(pngUri);
       setCoords({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
       });
     })();
   }, []);
+
+  const saveBase64ToPNG = async (base64Data) => {
+    try {
+      const fileUri = FileSystem.cacheDirectory + 'image.png';
+      await FileSystem.writeAsStringAsync(fileUri, base64Data, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+      console.log(fileUri)
+      return fileUri;
+    } catch (error) {
+      console.error('Error saving base64 to PNG:', error);
+      return null;
+    }
+  };
 
   let text = 'Waiting..';
   let currLat = '';
@@ -69,7 +91,10 @@ const MapLocation = (props) => {
       >
         <HamburgerIcon onPress={() => props.navigation.navigate('FriendsPage')} />
         <Marker
-           coordinate={coords}
+           coordinate={{
+            latitude: 49.2622,
+            longitude: -123.245
+          }}
           image={require('./dog.png')}
           // onCalloutPress={this.markerClick}
           onPress={() => props.navigation.navigate('Profile')}
@@ -104,6 +129,12 @@ const MapLocation = (props) => {
           // onCalloutPress={this.markerClick}
           onPress={() => props.navigation.navigate('Profile')}
         >
+        </Marker>
+        <Marker
+          coordinate={coords}
+          onPress={() => props.navigation.navigate('Profile')}
+        >
+          <Image source={{ uri: pngImageUri }} style={{ width: 90, height: 90 }} />
         </Marker>
       </MapView>
       <StatusBar style="auto" />
