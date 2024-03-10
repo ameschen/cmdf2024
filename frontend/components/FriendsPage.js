@@ -10,7 +10,6 @@ import mockDogs from './Data';
 
 export default function FriendsPage() {
 
-
     return (
         <View style={styles.appContainer}>
             <Text style={styles.text}>Friends</Text>

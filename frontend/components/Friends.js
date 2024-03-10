@@ -9,15 +9,15 @@ const images = {
     // Add more mappings here
 };
 
-export default function Friends({ key, name, image }) {
+export default function Friends(props) {
     return (
         <View style={styles.container}>
             <Image
-                source={images[image]} // Replace "./billie.png" with the appropriate path or method to dynamically load images
+                source={images[props.image]} // Replace "./billie.png" with the appropriate path or method to dynamically load images
                 style={styles.image}
             />
             <View style={styles.textContainer}>
-                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.name}>{props.name}</Text>
             </View>
         </View>
     );

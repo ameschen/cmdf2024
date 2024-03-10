@@ -4,11 +4,14 @@ import { Platform, StyleSheet, Text, View, TouchableOpacity } from 'react-native
 const HamburgerIcon = ({onPress}) => {
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={{ paddingHorizontal: 40, paddingVertical: 65 }}>
+    <View style={{ width: '30%'}}>
+          <TouchableOpacity onPress={onPress}>
+      <View style={{ marginLeft: 40, paddingVertical: 65 }}>
         <Icon name="heart" size={50} color='#D14D72' />
       </View>
     </TouchableOpacity>
+    </View>
+
   )
 }
 
