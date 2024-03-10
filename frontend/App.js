@@ -16,7 +16,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
+      <Stack.Navigator initialRouteName="FriendsPage">
         <Stack.Screen name="MapLocation" component={MapLocation} options={{ headerShown: false }} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
         <Stack.Screen name="FriendsPage" component={FriendsPage} options={{ headerShown: false }} />
