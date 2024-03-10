@@ -27,19 +27,19 @@ app.use(pupProfileRoutes);
 //APIS
 app.post("/create-profile", async (req, res) => {
     try {
-        // const data = {
-        //     DogName: 'Helen',
-        //     DogBirthday: 'April',
-        //     DogSex: 'Female',
-        //     DogColor: 'Brown',
-        //     DogBreed: 'Labrador',
-        //     DogFeatures: 'Spotted',
-        //     DogFur: 'Short',
-        //     DogEyeColor: 'Hazel',
-        //     DogSnoutColor: 'Black',
-        //     DogEarColor: 'Brown'
-        // }
-        const data = req.body.formData
+        const data = {
+            DogName: 'Helen',
+            DogBirthday: 'April',
+            DogSex: 'Female',
+            DogColor: 'Brown',
+            DogBreed: 'Labrador',
+            DogFeatures: 'Spotted',
+            DogFur: 'Short',
+            DogEyeColor: 'Hazel',
+            DogSnoutColor: 'Black',
+            DogEarColor: 'Brown'
+        }
+        // const data = req.body.formData
         const color = data.DogColor
         const breed = data.DogBreed
         const features = data.DogFeatures
@@ -66,7 +66,7 @@ app.post("/create-profile", async (req, res) => {
 
         console.log('Add Response:', addResponse.data);
 
-        res.status(200).json(removebgImage);
+        res.status(200).json({ base64Image: removebgImage });
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Internal Server Error");
