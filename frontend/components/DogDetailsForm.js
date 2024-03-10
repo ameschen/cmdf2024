@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import axios from 'axios';
 
 
 
@@ -17,10 +18,32 @@ const DogDetailsForm = () => {
   const [dogBirthday, setDogBirthday] = useState('');
   const [dogSex, setDogSex] = useState('');
 
-  const handleSubmit = () => {
-    // Implement what happens when the form is submitted
-    console.log(dogColor, dogBreed, dogFeatures, dogFur, dogEyeColor, dogEarColor, dogSnoutColor, email, dogName, dogBirthday, dogSex);
-    alert('Form Submitted');
+  
+  const handleSubmit = async () => {
+    const formData = {
+      DogColor: dogColor,
+      DogBreed: dogBreed,
+      DogFeatures: dogFeatures,
+      DogFur: dogFur,
+      DogEyeColor: dogEyeColor,
+      DogEarColor: dogEarColor,
+      DogSnoutColor: dogSnoutColor,
+      Email: email,
+      DogName: dogName,
+      DogBirthday: dogBirthday,
+      DogSex: dogSex
+    };
+
+    console.log(formData); // See what will be sent
+
+    try {
+      const response = await axios.post('http://localhost:3001/create-profile', formData);
+      console.log(response.data); // Handle the response from the backend
+      navigation.navigate('MapLocation');
+    } catch (error) {
+      console.error(error); // Handle any errors here
+      alert('Failed to submit form');
+    }
   };
 
   const GradientButton = ({ onPress, title }) => {
