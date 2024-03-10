@@ -72,7 +72,7 @@ async function createPupIcon(breed, color, fur, eye, snout, ear) {
   try {
     const response = await openai.images.generate({
       model: "dall-e-3",
-      prompt: `Make a simple flat icon of a dog's head on a solid color background with no other shapes other than the dog's head. The dog is a ${breed} breed, but make it look like the following description: The dog is ${color}. The dog has ${fur} hair. The dogs eyes are ${eye}. The dog has a ${snout} snout. The dog's ears are ${ear}.`,
+      prompt: `Make a simple flat icon of a dog's head. The output should be simple and only show the dog's head. The background should be flat, solid, and neutral. The dog is a ${breed} breed, but please prioritize making it look like the following description: The dog's colours are ${color}. The dog's hair type is ${fur}. The dog's eye colour is ${eye}. The dog's snout colour is ${snout}. The dog's ear colours are ${ear}.`,
       // response_format: "b64_json"
     });
     console.log(response.data[0].url);
