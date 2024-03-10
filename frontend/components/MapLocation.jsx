@@ -11,8 +11,13 @@ const MapLocation = (props) => {
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [lat, setLat] = useState(49.26291);
-  const [long, setLong] = useState(-123.24472);
+  // const [lat, setLat] = useState(49.26291);
+  // const [long, setLong] = useState(-123.24472);
+
+  const [coords, setCoords] = useState({
+    latitude: 49.26291,
+    longitude: -123.24472,
+  });
 
   useEffect(() => {
     (async () => {
@@ -25,6 +30,10 @@ const MapLocation = (props) => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      setCoords({
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+      });
     })();
   }, []);
 
@@ -38,13 +47,13 @@ const MapLocation = (props) => {
     currLong = parseFloat(JSON.stringify(location.coords.longitude));
   }
 
-  React.useEffect(() => {
-    setLat(currLat);
-  }, []);
+  // React.useEffect(() => {
+  //   setLat(currLat);
+  // }, []);
 
-  React.useEffect(() => {
-    setLong(currLong);
-  }, []);
+  // React.useEffect(() => {
+  //   setLong(currLong);
+  // }, []);
 
   return (
     <View style={styles.container}>
@@ -52,8 +61,7 @@ const MapLocation = (props) => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: lat,
-          longitude: long,
+          ...coords,
           latitudeDelta: 0.002,
           longitudeDelta: 0.002,
         }}
@@ -61,10 +69,7 @@ const MapLocation = (props) => {
       >
         <HamburgerIcon onPress={() => props.navigation.navigate('FriendsPage')} />
         <Marker
-          coordinate={{
-            latitude: lat,
-            longitude: long
-          }}
+           coordinate={coords}
           image={require('./dog.png')}
           // onCalloutPress={this.markerClick}
           onPress={() => props.navigation.navigate('Profile')}
