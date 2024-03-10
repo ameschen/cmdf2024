@@ -2,7 +2,7 @@ const mockDogs = [
     {
         id: 1,
         image: 'billie',
-        name: 'Billie Jean',
+        name: 'Billie',
         breed: 'Bernadoodle',
         age: 3,
         gender: 'Female',
@@ -20,8 +20,8 @@ const mockDogs = [
         gender: 'Female',
         lat: 50.26291,
         long: -124.24472,
-        likes: 'Fetch',
-        dislikes: 'Other dogs'
+        likes: 'Drinking water, Being held, Stealing food',
+        dislikes: 'Strangers, Getting in trouble, Waking up'
     },
     {
         id: 3,
@@ -32,8 +32,8 @@ const mockDogs = [
         gender: 'Female',
         lat: 48.26291,
         long: -122.24472,
-        likes: 'Treats',
-        dislikes: 'Water'
+        likes: 'Attention, Affection, Respect',
+        dislikes: 'Being ignored, Being woken up, Being botherd'
     },
     {
         id: 4,
@@ -44,8 +44,8 @@ const mockDogs = [
         gender: 'Female',
         lat: 45.26291,
         long: -123.24472,
-        likes: 'Sqeaky toys',
-        dislikes: 'Vet'
+        likes: 'Warmth, Clothing, Playing',
+        dislikes: 'Getting lost, Going outside, The rain'
     },
 ];
 
