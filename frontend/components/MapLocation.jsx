@@ -16,8 +16,6 @@ const MapLocation = (props) => {
   // const [formData, setFormData] = useState(null);
   // const [lat, setLat] = useState(49.26291);
   // const [long, setLong] = useState(-123.24472);
-  // console.log("MapLocation " + JSON.stringify(props.route.params));
-  // console.log("MapLocation with formdata" + props.route.params.formData);
 
   const [coords, setCoords] = useState({
     latitude: 49.26291,

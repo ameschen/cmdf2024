@@ -41,8 +41,6 @@ const DogDetailsForm = (props) => {
       DogDislikes: dogDislikes
     };
 
-    console.log("first console log " + formData); // See what will be sent
-
     try {
       console.log("in try");
       fetch('http://206.12.40.175:3001/create-profile', {
@@ -59,10 +57,7 @@ const DogDetailsForm = (props) => {
           return response.json();
         })
         .then(data => {
-          console.log("in in first then");
-          // console.log(data.base64Image);
           const currFormData = JSON.stringify(formData);
-          console.log('FormData ' + currFormData);
           props.navigation.navigate('MapLocation', { base64ImageData: data.base64Image, formData: currFormData });
         })
         .catch(error => {
