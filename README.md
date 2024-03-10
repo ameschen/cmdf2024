@@ -29,3 +29,8 @@ We envision so many more exciting features for Pupspot! Some of the first we'd w
 - Expanded profile elements to allow users to document more information or memories with their dog on the app
 
 We would like to keep working on our app because we truly feel that people would love it, and it fulfills a niche. This form of interacting in digital spaces, but tied to irl experiences is an engaging form of social media that hasn't been fully explored by existing applications. Additionally, in building the MVP, we recognize we would need to learn many more skills to build this in a way that would be deployable. As a team, we're interested in learning these skills and applying them to a project that aims to spread fun and joy in our community.
+
+![youtube-video-gif](https://github.com/ameschen/pupspot/assets/97807473/8c0130c2-9963-4d2e-9730-2b4667e6e8cf)
+
+## [Full Demo Video](https://youtu.be/iWexCTlNN9A)
+
