@@ -8,7 +8,6 @@ import mockDogs from './Data';
 
 
 
-
 export default function FriendsPage() {
 
 

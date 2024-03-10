@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, TextInput, Button, StyleSheet, Image, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+// import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
 
 
@@ -101,18 +101,21 @@ const DogDetailsForm = (props) => {
   // };
 
   return (
-    <LinearGradient
-      // Background Linear Gradient
-      colors={['#FAFAFA', '#FAFAFA']} // These are light brownish/golden colors
-      style={styles.gradientBackground}
+
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
     >
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}>
         <View style={styles.container}>
           <Image
-            source={require('../logo.png')} // Replace with the path to your image
+            source={require('../logoNew.png')} // Replace with the path to your image
             style={styles.topImage}
             resizeMode="contain" // This will ensure the image scales to fit while maintaining its aspect ratio
           />
+
+          <Text style={styles.subheading}>Profile Creation</Text>
           <Text style={styles.label}>What is your email?</Text>
           <TextInput
             style={styles.input}
@@ -134,7 +137,7 @@ const DogDetailsForm = (props) => {
             style={styles.input}
             onChangeText={setDogBirthday}
             value={dogBirthday}
-            placeholder="YYYY-MM-DD" // Example placeholder for format
+            placeholder="YYYYMMDD" // Example placeholder for format
             keyboardType="numeric" // To show numeric keyboard
           />
 
@@ -146,13 +149,7 @@ const DogDetailsForm = (props) => {
             autoCapitalize="none" // To prevent automatic capitalization
           />
 
-          <Text style={styles.customIconText}>Let's create a custom icon for your companion...</Text>
-          <Image
-            source={{ uri: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/ce8b1e76965389.5c7945b0cffef.gif' }} // Direct URI to the image
-            style={styles.bottomImage}
-            resizeMode="contain"
-          />
-
+          <Text style={styles.subheading}>Pup Creation</Text>
 
           <Text style={styles.label}>Describe your pup's color(s):</Text>
           <TextInput
@@ -205,18 +202,17 @@ const DogDetailsForm = (props) => {
 
           <View style={styles.buttonImageContainer}>
 
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Button title="Press Me" onPress={handleSubmit} />
+            <View>
+              <TouchableOpacity onPress={handleSubmit} style={styles.customButton}>
+                <Text style={styles.customButtonText}>Submit</Text>
+              </TouchableOpacity>
+              {/* <Button style={styles.button} title="Press Me" onPress={handleSubmit} /> */}
             </View>
-            <Image
-              source={{ uri: 'https://cdn-icons-png.flaticon.com/512/5987/5987477.png' }} // Replace with the path to your image
-              style={styles.buttonImage}
-              resizeMode="contain" // or "cover", depending on your need
-            />
+
           </View>
         </View>
       </ScrollView>
-    </LinearGradient>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -242,8 +238,8 @@ const styles = StyleSheet.create({
   topImage: {
     width: '70%', // Takes the full width of the container
     height: 130, // Set the height as desired
-    marginTop: 10,
-    marginBottom: 10, // Add space above the image if needed
+    marginTop: 30,
+    marginBottom: 0, // Add space above the image if needed
   },
   customIconText: {
     marginTop: 20,
@@ -261,6 +257,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#CCD3CA', // Ensure there's no excessive padding or margin here
+    height: '100%',
   },
   iconStyle: {
     width: 100,
@@ -270,7 +268,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     margin: 12,
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 20,
     padding: 10,
     width: '100%',
@@ -280,25 +278,49 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginLeft: 12,
     fontFamily: 'System',
-  },
-  buttonContainer: {
-    borderRadius: 20, // Rounded corners
-    overflow: 'hidden', // This is needed to apply the border radius
-  },
-  button: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20, // This should match the buttonContainer's borderRadius
-    alignItems: 'center', // Center text horizontally
-    justifyContent: 'center', // Center text vertically
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
+    color: "#3D4C36",
     fontWeight: 'bold',
   },
+  // buttonContainer: {
+  //   borderRadius: 20, // Rounded corners
+  //   overflow: 'hidden', // This is needed to apply the border radius
+  // },
+  // button: {
+  //   // paddingVertical: 10,
+  //   // paddingHorizontal: 20,
+  //   // borderRadius: 20, // This should match the buttonContainer's borderRadius
+  //   // alignItems: 'center', // Center text horizontally
+  //   // justifyContent: 'center', // Center text vertically
+  //   backgroundColor: "#fff"
+  // },
+  // buttonText: {
+  //   color: 'white',
+  //   fontSize: 16,
+  //   fontWeight: 'bold',
+  // },
+  subheading: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginTop: 20,
+    color: "#3D4C36"
+  },
+  customButton: {
+    marginTop: 20, // Add some margin to the top
+    backgroundColor: '#3D4C36', // A nice salmon background color
+    paddingVertical: 15, // Padding inside the button
+    paddingHorizontal: 30, // Horizontal padding for wider button appearance
+    borderRadius: 20, // Rounded corners
+    width: '100%', // Set width relative to container
+    alignSelf: 'center', // Center button horizontally
+    marginBottom: 30,
+  },
+  customButtonText: {
+    color: '#CCD3CA', // White text color
+    textAlign: 'center', // Center text
+    fontWeight: 'bold', // Bold text
+    fontSize: 16, // Font size
+  },
 });
-
-
 
 export default DogDetailsForm;
