@@ -1,14 +1,21 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import mockDogs from './Data.js'; // Assuming this is the file name where mockDogs is defined
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import mockDogs from './Data.js';
+import { useState } from 'react';
 
 
-const mockDog = mockDogs.find(dog => dog.name === "Billie Jean")
+const mockDog = mockDogs.find(dog => dog.name === "Billie")
 
-export default function Profile() {
+export default function Billie({ addFriend, friend }) {
     // Split likes and dislikes into arrays
     const likesArray = mockDog.likes.split(', ');
     const dislikesArray = mockDog.dislikes.split(', ');
+
+
+
+    const handleAddFriend = () => {
+        addFriend(mockDog);
+    };
 
     return (
         <View style={styles.container}>
@@ -34,6 +41,14 @@ export default function Profile() {
                     ))}
                 </View>
             </View>
+
+
+            <TouchableOpacity onPress={handleAddFriend} style={styles.addButton}>
+                <Text style={styles.addButtonText}>Add to Friends</Text>
+            </TouchableOpacity>
+
+
+
         </View>
     );
 }
@@ -95,5 +110,19 @@ const styles = StyleSheet.create({
     listItem: {
         fontSize: 18,
         color: '#CCD3CA',
-    }
+    },
+    addButton: {
+        marginTop: 50,
+        backgroundColor: '#CCD3CA',
+        padding: 10,
+        borderRadius: 5,
+        borderColor: '#4f4b42',
+        borderWidth: 3,
+    },
+    addButtonText: {
+        color: '#4f4b42',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
 });

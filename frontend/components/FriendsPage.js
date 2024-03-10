@@ -8,17 +8,20 @@ import mockDogs from './Data';
 
 
 
-export default function FriendsPage() {
+export default function FriendsPage({ navigation, addFriend, friendsList }) {
+
+    // const filteredDogs = mockDogs.filter(dog => dog.name === 'Rosie' || dog.name === 'Stormy');
 
     return (
         <View style={styles.appContainer}>
             <Text style={styles.text}>Friends</Text>
             <ScrollView contentContainerStyle={styles.container}>
-                {mockDogs.map((dog) => (
+                {friendsList.map((dog) => (
                     <Friends
                         key={dog.id}
                         name={dog.name}
                         image={dog.image}
+                        navigation={navigation}
                     />
                 ))}
             </ScrollView>

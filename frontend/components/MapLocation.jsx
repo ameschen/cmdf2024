@@ -97,7 +97,7 @@ const MapLocation = (props) => {
           }}
           image={require('./dog.png')}
           // onCalloutPress={this.markerClick}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('Billie')}
         >
         </Marker>
         <Marker
@@ -107,9 +107,12 @@ const MapLocation = (props) => {
           }}
           image={require('./pepper.png')}
           // onCalloutPress={this.markerClick}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('Pepper')}
         >
         </Marker>
+
+
+{/* 
         <Marker
           coordinate={{
             latitude: 49.2635,
@@ -117,7 +120,7 @@ const MapLocation = (props) => {
           }}
           image={require('./rosie.png')}
           // onCalloutPress={this.markerClick}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('Rosie')}
         >
         </Marker>
         <Marker
@@ -127,9 +130,12 @@ const MapLocation = (props) => {
           }}
           image={require('./stormy.png')}
           // onCalloutPress={this.markerClick}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('Stormy')}
         >
-        </Marker>
+        </Marker> */}
+
+
+
         <Marker
           coordinate={coords}
           onPress={() => props.navigation.navigate('Profile')}

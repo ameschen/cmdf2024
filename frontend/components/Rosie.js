@@ -3,9 +3,9 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import mockDogs from './Data.js'; // Assuming this is the file name where mockDogs is defined
 
 
-const mockDog = mockDogs.find(dog => dog.name === "Billie Jean")
+const mockDog = mockDogs.find(dog => dog.name === "Rosie")
 
-export default function Profile() {
+export default function Rosie() {
     // Split likes and dislikes into arrays
     const likesArray = mockDog.likes.split(', ');
     const dislikesArray = mockDog.dislikes.split(', ');
@@ -13,7 +13,7 @@ export default function Profile() {
     return (
         <View style={styles.container}>
             <Image
-                source={require('./dog.png')}
+                source={require('./rosie.png')}
                 style={styles.image}
             />
             <Text style={styles.name}>{mockDog.name}</Text>

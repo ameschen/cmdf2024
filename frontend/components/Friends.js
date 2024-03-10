@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+
 
 const images = {
     billie: require('./billie.png'),
@@ -11,15 +12,17 @@ const images = {
 
 export default function Friends(props) {
     return (
-        <View style={styles.container}>
-            <Image
-                source={images[props.image]} // Replace "./billie.png" with the appropriate path or method to dynamically load images
-                style={styles.image}
-            />
-            <View style={styles.textContainer}>
-                <Text style={styles.name}>{props.name}</Text>
+        <TouchableOpacity onPress={() => props.navigation.navigate(props.name)}>
+            <View style={styles.container}>
+                <Image
+                    source={images[props.image]}
+                    style={styles.image}
+                />
+                <View style={styles.textContainer}>
+                    <Text style={styles.name}>{props.name}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity >
     );
 }
 
