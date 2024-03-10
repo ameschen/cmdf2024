@@ -5,6 +5,7 @@ import { Marker } from "react-native-maps";
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
 import HamburgerIcon from './HamburgerIcon';
+import mockDogs from './Data';
 
 const MapLocation = (props) => {
 
@@ -33,11 +34,8 @@ const MapLocation = (props) => {
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
-    // text = JSON.stringify(location);
     currLat = parseFloat(JSON.stringify(location.coords.latitude));
-    // 49.26291
     currLong = parseFloat(JSON.stringify(location.coords.longitude));
-    // -123.24472
   }
 
   React.useEffect(() => {
@@ -56,8 +54,8 @@ const MapLocation = (props) => {
         initialRegion={{
           latitude: lat,
           longitude: long,
-          latitudeDelta: 0.001,
-          longitudeDelta: 0.001,
+          latitudeDelta: 0.002,
+          longitudeDelta: 0.002,
         }}
         zoomEnabled={false}
       >
@@ -71,19 +69,36 @@ const MapLocation = (props) => {
           // onCalloutPress={this.markerClick}
           onPress={() => props.navigation.navigate('Profile')}
         >
-        {/* <MapView.Callout tooltip style={styles.customView}>
-              <View style={styles.calloutText}>
-                 <Text>{marker.title}{"\n"}{marker.description}</Text>
-              </View>
-          </MapView.Callout> */}
-          {/* <Image style={{ width: 160, height: 160 }} /> */}
-          {/* <View>
-            <Image
-              // source="require('./dog.png')"
-              src={require('./dog.png')}
-            // style={styles.marker}
-            />
-          </View> */}
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: 49.2625,
+            longitude: -123.2461
+          }}
+          image={require('./pepper.png')}
+          // onCalloutPress={this.markerClick}
+          onPress={() => props.navigation.navigate('Profile')}
+        >
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: 49.2635,
+            longitude: -123.246
+          }}
+          image={require('./rosie.png')}
+          // onCalloutPress={this.markerClick}
+          onPress={() => props.navigation.navigate('Profile')}
+        >
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: 49.2645,
+            longitude: -123.245
+          }}
+          image={require('./stormy.png')}
+          // onCalloutPress={this.markerClick}
+          onPress={() => props.navigation.navigate('Profile')}
+        >
         </Marker>
       </MapView>
       <StatusBar style="auto" />

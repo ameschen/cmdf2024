@@ -6,6 +6,10 @@ const mockDogs = [
         breed: 'Bernadoodle',
         age: 3,
         gender: 'Female',
+        lat: 49.26291,
+        long: -123.24472,
+        likes: 'Cuddles, Food, Ripping toys apart',
+        dislikes: 'Pressure, Beeping noises, Strangers'
     },
     {
         id: 2,
@@ -14,6 +18,10 @@ const mockDogs = [
         breed: 'Bernadoodle',
         age: 2,
         gender: 'Female',
+        lat: 50.26291,
+        long: -124.24472,
+        likes: 'Fetch',
+        dislikes: 'Other dogs'
     },
     {
         id: 3,
@@ -22,6 +30,10 @@ const mockDogs = [
         breed: 'Poodle',
         age: 6,
         gender: 'Female',
+        lat: 48.26291,
+        long: -122.24472,
+        likes: 'Treats',
+        dislikes: 'Water'
     },
     {
         id: 4,
@@ -30,6 +42,10 @@ const mockDogs = [
         breed: 'Italian Greyhound',
         age: 0,
         gender: 'Female',
+        lat: 45.26291,
+        long: -123.24472,
+        likes: 'Sqeaky toys',
+        dislikes: 'Vet'
     },
 ];
 
