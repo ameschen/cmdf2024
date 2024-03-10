@@ -4,6 +4,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Marker } from "react-native-maps";
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location';
+import HamburgerIcon from './HamburgerIcon';
 
 const MapLocation = (props) => {
 
@@ -60,6 +61,7 @@ const MapLocation = (props) => {
         }}
         zoomEnabled={false}
       >
+        <HamburgerIcon onPress={() => props.navigation.navigate('FriendsPage')} />
         <Marker
           coordinate={{
             latitude: lat,

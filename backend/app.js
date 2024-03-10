@@ -18,6 +18,7 @@ const removeBackgroundAPI = process.env.REMOVEBG;
 // set up client key
 const openai = new OpenAI({apiKey: process.env.APIKEY});
 
+// app.use(express.json());
 app.use(bodyParser.json({ limit: '1000000mb' }));
 app.use(bodyParser.urlencoded({ limit: '1000000mb', extended: true }));
 
@@ -26,7 +27,9 @@ app.use(pupProfileRoutes);
 
 //APIS
 app.post("/create-profile", async (req, res) => {
+  console.log('backend')
     try {
+      console.log(req.body);
         const icon = await createPupIcon();
         console.log(icon)
         const removebgImage = await removeBackground(icon);
@@ -44,11 +47,13 @@ app.post("/create-profile", async (req, res) => {
         const addResponse = await axios.post('http://localhost:3001/pup-profile/add', newProfileData);
 
         console.log('Add Response:', addResponse.data);
-
-        res.status(200).json(removebgImage);
+        console.log('in try');
+        res.status(200).json('hello');
+        console.log('hello');
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Internal Server Error");
+        console.log('error');
     }
 });
 
