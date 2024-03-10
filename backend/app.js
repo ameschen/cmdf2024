@@ -18,6 +18,7 @@ const removeBackgroundAPI = process.env.REMOVEBG;
 // set up client key
 const openai = new OpenAI({apiKey: process.env.APIKEY});
 
+// app.use(express.json());
 app.use(bodyParser.json({ limit: '1000000mb' }));
 app.use(bodyParser.urlencoded({ limit: '1000000mb', extended: true }));
 
@@ -26,20 +27,21 @@ app.use(pupProfileRoutes);
 
 //APIS
 app.post("/create-profile", async (req, res) => {
+  console.log('backend')
     try {
-        const data = {
-            DogName: 'Helen',
-            DogBirthday: 'April',
-            DogSex: 'Female',
-            DogColor: 'Brown',
-            DogBreed: 'Labrador',
-            DogFeatures: 'Spotted',
-            DogFur: 'Short',
-            DogEyeColor: 'Hazel',
-            DogSnoutColor: 'Black',
-            DogEarColor: 'Brown'
-        }
-        // const data = req.body.formData
+        // const data = {
+        //     DogName: 'Helen',
+        //     DogBirthday: 'April',
+        //     DogSex: 'Female',
+        //     DogColor: 'Brown',
+        //     DogBreed: 'Labrador',
+        //     DogFeatures: 'Spotted',
+        //     DogFur: 'Short',
+        //     DogEyeColor: 'Hazel',
+        //     DogSnoutColor: 'Black',
+        //     DogEarColor: 'Brown'
+        // }
+        const data = req.body.formData
         const color = data.DogColor
         const breed = data.DogBreed
         const features = data.DogFeatures
@@ -65,11 +67,18 @@ app.post("/create-profile", async (req, res) => {
         const addResponse = await axios.post('http://localhost:3001/pup-profile/add', newProfileData);
 
         console.log('Add Response:', addResponse.data);
+<<<<<<< HEAD
 
         res.status(200).json({ base64Image: removebgImage });
+=======
+        console.log('in try');
+        res.status(200).json('hello');
+        console.log('hello');
+>>>>>>> main
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Internal Server Error");
+        console.log('error');
     }
 });
 
