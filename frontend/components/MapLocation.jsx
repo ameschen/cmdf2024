@@ -13,6 +13,7 @@ const MapLocation = (props) => {
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  // const [formData, setFormData] = useState(null);
   // const [lat, setLat] = useState(49.26291);
   // const [long, setLong] = useState(-123.24472);
 
@@ -110,8 +111,6 @@ const MapLocation = (props) => {
           onPress={() => props.navigation.navigate('Pepper')}
         >
         </Marker>
-
-
 {/* 
         <Marker
           coordinate={{
@@ -134,11 +133,9 @@ const MapLocation = (props) => {
         >
         </Marker> */}
 
-
-
         <Marker
           coordinate={coords}
-          onPress={() => props.navigation.navigate('Profile')}
+          onPress={() => props.navigation.navigate('Profile', { image: pngImageUri, formData: props.route.params.formData })}
         >
           <Image source={{ uri: pngImageUri }} style={{ width: 100, height: 100 }} />
         </Marker>
