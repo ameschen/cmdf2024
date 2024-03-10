@@ -7,12 +7,12 @@ import axios from 'axios';
 const DogDetailsForm = (props) => {
   const [dogColor, setDogColor] = useState('');
   const [dogBreed, setDogBreed] = useState('');
-  const [dogFeatures, setDogFeatures] = useState('');
+  // const [dogFeatures, setDogFeatures] = useState('');
   const [dogFur, setDogFur] = useState('');
   const [dogEyeColor, setDogEyeColor] = useState('');
   const [dogEarColor, setDogEarColor] = useState('');
   const [dogSnoutColor, setDogSnoutColor] = useState('');
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
   const [dogName, setDogName] = useState('');
   const [dogBirthday, setDogBirthday] = useState('');
   const [dogGender, setDogGender] = useState('');
@@ -28,7 +28,7 @@ const DogDetailsForm = (props) => {
     const formData = {
       DogColor: dogColor,
       DogBreed: dogBreed,
-      DogFeatures: dogFeatures,
+      // DogFeatures: dogFeatures,
       DogFur: dogFur,
       DogEyeColor: dogEyeColor,
       DogEarColor: dogEarColor,
@@ -41,7 +41,7 @@ const DogDetailsForm = (props) => {
       DogDislikes: dogDislikes
     };
 
-    console.log(formData); // See what will be sent
+    console.log("first console log " + formData); // See what will be sent
 
     try {
       console.log("in try");
@@ -61,7 +61,9 @@ const DogDetailsForm = (props) => {
         .then(data => {
           console.log("in in first then");
           // console.log(data.base64Image);
-          props.navigation.navigate('MapLocation', { base64ImageData: data.base64Image });
+          const currFormData = JSON.stringify(formData);
+          console.log('FormData ' + currFormData);
+          props.navigation.navigate('MapLocation', { base64ImageData: data.base64Image, formData: currFormData });
         })
         .catch(error => {
           alert(error);
@@ -70,7 +72,7 @@ const DogDetailsForm = (props) => {
     } catch (error) {
       console.error(error); // Handle any errors here
       alert('Failed to submit form');
-    } 
+    }
   };
 
   return (
@@ -81,7 +83,7 @@ const DogDetailsForm = (props) => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
     >
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}>
-      {/* {isLoading ? ( // Show loading indicator if isLoading is true
+        {/* {isLoading ? ( // Show loading indicator if isLoading is true
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Loading...</Text>
           </View>
@@ -110,13 +112,21 @@ const DogDetailsForm = (props) => {
             value={dogName}
           />
 
-          <Text style={styles.label}>What is your pup's birthday?</Text>
+          {/* <Text style={styles.label}>What is your pup's birthday?</Text>
           <TextInput
             style={styles.input}
             onChangeText={setDogBirthday}
             value={dogBirthday}
             placeholder="YYYYMMDD" // Example placeholder for format
             keyboardType="numeric" // To show numeric keyboard
+          /> */}
+
+          <Text style={styles.label}>How old is your dog?</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setDogBirthday}
+            value={dogBirthday}
+            // dogBirthday = age
           />
 
           <Text style={styles.label}>What is your pup's gender?</Text>
@@ -138,7 +148,7 @@ const DogDetailsForm = (props) => {
             style={styles.input}
             onChangeText={setDogDislikes}
             value={dogDislikes}
-          />    
+          />
 
           <Text style={styles.subheading}>Pup Creation</Text>
 
@@ -184,12 +194,12 @@ const DogDetailsForm = (props) => {
             value={dogSnoutColor}
           />
 
-          <Text style={styles.label}>Explain any notable features your pup has:</Text>
+          {/* <Text style={styles.label}>Explain any notable features your pup has:</Text>
           <TextInput
             style={styles.input}
             onChangeText={setDogFeatures}
             value={dogFeatures}
-          />
+          /> */}
 
           <View style={styles.buttonImageContainer}>
 
@@ -202,7 +212,7 @@ const DogDetailsForm = (props) => {
 
           </View>
         </View>
-        
+
       </ScrollView>
     </KeyboardAvoidingView>
   );

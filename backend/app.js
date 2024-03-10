@@ -33,13 +33,12 @@ app.post("/create-profile", async (req, res) => {
 
     const color = data.DogColor
     const breed = data.DogBreed
-    const features = data.DogFeatures
     const fur = data.DogFur
     const eye = data.DogEyeColor
     const snout = data.DogSnoutColor
     const ear = data.DogEarColor
 
-    const icon = await createPupIcon(breed, color, fur, eye, snout, ear, features);
+    const icon = await createPupIcon(breed, color, fur, eye, snout, ear);
     // console.log(icon)
     const removebgImage = await removeBackground(icon);
     // console.log(removebgImage)
@@ -69,11 +68,11 @@ app.post("/create-profile", async (req, res) => {
 });
 
 
-async function createPupIcon(breed, color, fur, eye, snout, ear, features) {
+async function createPupIcon(breed, color, fur, eye, snout, ear) {
   try {
     const response = await openai.images.generate({
       model: "dall-e-3",
-      prompt: `Make a simple flat icon of a dog's head on a solid color background with no other shapes other than the dog's head. The dog is a ${breed} breed, but make it look like the following description: The dog is ${color}. The dog has ${fur} hair. The dogs eyes are ${eye}. The dog has a ${snout} snout. The dog's ears are ${ear}. Please include it's ${features}.`,
+      prompt: `Make a simple flat icon of a dog's head on a solid color background with no other shapes other than the dog's head. The dog is a ${breed} breed, but make it look like the following description: The dog is ${color}. The dog has ${fur} hair. The dogs eyes are ${eye}. The dog has a ${snout} snout. The dog's ears are ${ear}.`,
       // response_format: "b64_json"
     });
     console.log(response.data[0].url);
