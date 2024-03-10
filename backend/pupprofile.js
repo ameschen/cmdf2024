@@ -9,25 +9,37 @@ const pupProfileRoutes = express.Router();
 const pupProfileSchema = new mongoose.Schema({
   dogName: {
     type: String,
-    required: true,
+    required: true
   },
   breed: {
     type: String,
-    required: true,
+    required: true
   },
   birthday: {
     type: String,
-    required: true,
+    required: true
   },
-  likes: {type: String},
-  dislikes: {type: String},
-  coordinates: {type: String},
+  gender: {
+    type: String
+  },
+  likes: {
+    type: String
+  },
+  dislikes: {
+    type: String
+  },
+  coordinates: {
+    type: String
+  },
   nearby: [{
-    type: Number,
+    type: Number
   }],
   friends: [{
-    type: Number,
+    type: Number
   }],
+  icon: {
+    type: Buffer
+  },
 });
 
 // Create the Pup Profile model based on the schema
@@ -70,6 +82,7 @@ pupProfileRoutes.route("/pup-profile/add").post(async function (req, res) {
         dogName: req.body.dogName,
         breed: req.body.breed,
         birthday: req.body.birthday,
+        gender: req.body.gender,
         likes: req.body.likes,
         dislikes: req.body.dislikes,
         coordinates: req.body.coordinates,
@@ -94,6 +107,7 @@ pupProfileRoutes.route("/pup-profile/update/:id").post(async function (req, res)
           dogName: req.body.dogName,
           breed: req.body.breed,
           birthday: req.body.birthday,
+          gender: req.body.gender,
           likes: req.body.likes,
           dislikes: req.body.dislikes,
           coordinates: req.body.coordinates,
