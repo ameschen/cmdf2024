@@ -1,12 +1,15 @@
 import * as React from 'react';
 import Friends from "./Friends";
 import { StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Text } from 'react-native';
 
 
 const mockDogs = [
     {
         id: 1,
-        image: './billie.png',
+        image: 'billie',
         name: 'Billie Jean',
         breed: 'Bernadoodle',
         age: 3,
@@ -14,7 +17,7 @@ const mockDogs = [
     },
     {
         id: 2,
-        image: './stormy.png',
+        image: 'stormy',
         name: 'Stormy',
         breed: 'Bernadoodle',
         age: 2,
@@ -22,7 +25,7 @@ const mockDogs = [
     },
     {
         id: 3,
-        image: './rosie.png',
+        image: 'rosie',
         name: 'Rosie',
         breed: 'Poodle',
         age: 6,
@@ -30,7 +33,7 @@ const mockDogs = [
     },
     {
         id: 4,
-        image: './pepper.png',
+        image: 'pepper',
         name: 'Pepper',
         breed: 'Italian Greyhound',
         age: 0,
@@ -39,16 +42,16 @@ const mockDogs = [
 ];
 
 export default function FriendsPage() {
+
+
     return (
         <View style={styles.appContainer}>
+            <Text style={styles.text}>Friends</Text>
             <ScrollView contentContainerStyle={styles.container}>
                 {mockDogs.map((dog) => (
                     <Friends
                         key={dog.id}
                         name={dog.name}
-                        breed={dog.breed}
-                        age={dog.age}
-                        gender={dog.gender}
                         image={dog.image}
                     />
                 ))}
@@ -60,13 +63,19 @@ export default function FriendsPage() {
 
 const styles = StyleSheet.create({
     appContainer: {
+        paddingTop: 80,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#fff',
     },
+    text: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        color: '#4f4b42',
+    },
     container: {
-        marginTop: 70,
+        marginTop: 10,
         width: '100%',
         height: '100%',
         alignItems: 'center',
