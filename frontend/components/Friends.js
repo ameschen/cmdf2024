@@ -1,50 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
+const images = {
+    billie: require('./billie.png'),
+    stormy: require('./stormy.png'),
+    rosie: require('./rosie.png'),
+    pepper: require('./pepper.png')
+    // Add more mappings here
+};
 
-
-export default function Friends({ name, breed, age, gender, image }) {
-
+export default function Friends({ key, name, image }) {
     return (
         <View style={styles.container}>
             <Image
-                source={require("./billie.png")} // Note: Dynamic require may not work as expected in React Native
+                source={images[image]} // Replace "./billie.png" with the appropriate path or method to dynamically load images
                 style={styles.image}
             />
-            <View style={styles.details}>
-                <Text style={styles.text}>{name}</Text>
-                <Text style={styles.text}>{breed}</Text>
-                <Text style={styles.text}>{age} years</Text>
-                <Text style={styles.text}>{gender}</Text>
+            <View style={styles.textContainer}>
+                <Text style={styles.name}>{name}</Text>
             </View>
         </View>
     );
 }
 
-
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        flexDirection: 'row', // Keeps items side by side
         padding: 10,
         backgroundColor: '#EED3D9',
-        marginBottom: 10,
+        marginBottom: 15,
         borderRadius: 10,
-        alignItems: 'center',
-        width: '95%',
+        alignItems: 'center', // Centers items vertically in the container
+        width: '90%',
     },
     image: {
-        width: 100,
-        height: 100,
+        width: 80,
+        height: 80,
         marginRight: 10,
     },
-    details: {
+    textContainer: {
         flex: 1,
+        justifyContent: 'center', // Center text container if needed, can be adjusted based on design requirements
     },
-    text: {
-        fontSize: 18, // Adjust font size
-        marginBottom: 5,
-        color: '#4f4b42', // Change text color to white
-        fontFamily: 'Arial', // Change font family to Arial
+    name: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#4f4b42',
+        fontFamily: 'ariel',
     },
 });
