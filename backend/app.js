@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ limit: '1000000mb', extended: true }));
 app.use(pupProfileRoutes);
 
 //APIS
-app.post("/", async (req, res) => {
+app.post("/create-profile", async (req, res) => {
     try {
         const icon = await createPupIcon();
         console.log(icon)
